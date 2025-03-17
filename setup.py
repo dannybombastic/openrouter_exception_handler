@@ -7,8 +7,8 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='openrouter_exception_handler',
-    version='0.1.7',
-    packages=find_packages(include=['openrouter_exception_handler', 'openrouter_exception_handler.*']),
+    version='0.1.8',
+    packages=find_packages(),
     install_requires=[
         'requests'
     ],
