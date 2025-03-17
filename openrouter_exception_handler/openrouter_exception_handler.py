@@ -9,7 +9,7 @@ def send_exception_to_openrouter(exception_trace):
 
     if not api_key:
         print("⚠️ [OpenRouter] APIKEY_OPENROUTER no definida en las variables de entorno.")
-        return None
+        return "No API key provided. Unable to retrieve AI response."
 
     prompt = f"""
     Capturé esta excepción en mi aplicación Python:
@@ -32,16 +32,22 @@ def send_exception_to_openrouter(exception_trace):
         ]
     }
 
-    response = requests.post(API_URL, json=data, headers=headers)
+    try:
+        response = requests.post(API_URL, json=data, headers=headers, timeout=10)
 
-    if response.status_code == 200:
-        try:
-            result = response.json()
-            return result['choices'][0]['message']['content'].strip()
-        except Exception as parse_err:
-            return f"[OpenRouter] Error al procesar la respuesta: {parse_err}"
-    else:
+        if response.status_code == 200:
+            try:
+                result = response.json()
+                ai_response = result.get('choices', [{}])[0].get('message', {}).get('content', '').strip()
+                return ai_response if ai_response else "[OpenRouter] No se recibió una respuesta válida."
+            except Exception as parse_err:
+                return f"[OpenRouter] Error al procesar la respuesta: {parse_err}"
+
         return f"[OpenRouter] Error en la solicitud: {response.status_code} - {response.text}"
+
+    except requests.exceptions.RequestException as req_err:
+        return f"[OpenRouter] Error al conectarse a la API: {req_err}"
+
 
 def exception_handler(func):
     def wrapper(*args, **kwargs):
@@ -49,7 +55,7 @@ def exception_handler(func):
             return func(*args, **kwargs)
         except Exception:
             exception_trace = traceback.format_exc()
-            print(f"❌ Excepción capturada:\n{exception_trace}")
+            print(f"❌ Excepción capturada:")
             ai_response = send_exception_to_openrouter(exception_trace)
             if ai_response:
                 print(f"\n🤖 [Respuesta de OpenRouter.ai]:\n{ai_response}\n")
