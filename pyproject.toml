@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openrouter_exception_handler"
-version = "0.4.9"
+version = "0.5.0"
 description = "Handler for exceptions in Python with OpenRouter.ai"
 authors = [{ name = "Dannybombastic", email = "dannybombastic@example.com" }]
 license = { text = "MIT" }
