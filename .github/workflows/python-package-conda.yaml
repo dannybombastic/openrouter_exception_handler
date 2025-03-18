@@ -2,13 +2,8 @@ name: Publish to PyPI
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-  workflow_dispatch:
-
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build-n-publish:
