@@ -44,6 +44,28 @@ This exception occurs because you're trying to divide by zero.
 Validate your inputs before performing division to prevent this error.
 ```
 
+## 📜 Detailed Usage
+## 💡 method-level Usage
+
+Simply decorate your functions with @exception_handler:
+```python
+from openrouter_exception_handler.exception_handler import exception_handler
+
+@exception_handler
+def divide(a, b):
+    return a / b
+
+divide(10, 0)  # Will trigger ZeroDivisionError and send the function's source code along with the error.
+```
+❌ Exception captured in 'divide': division by zero
+Source code of the function:
+def divide(a, b):
+    return a / b
+
+AI Response:
+This exception occurs because you're trying to divide by zero.
+Validate your inputs before performing division to prevent this error.
+
 ## 💡 Class-Level Usage
 
 To automatically capture exceptions in **all methods** of a class (including `staticmethod` and `classmethod`), use `@class_exception_handler`:
