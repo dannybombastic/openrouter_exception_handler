@@ -59,5 +59,5 @@ def exception_handler(func):
             ai_response = send_exception_to_openrouter(exception_trace)
             if ai_response:
                 print(f"\n🤖 [Respuesta de OpenRouter.ai]:\n{ai_response}\n")
-            raise  # Re-lanza la excepción original para no ocultar errores críticos
+            
     return wrapper
