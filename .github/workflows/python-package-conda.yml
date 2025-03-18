@@ -9,6 +9,9 @@ jobs:
   build-n-publish:
     name: Build and Publish to PyPI
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout code
@@ -27,15 +30,10 @@ jobs:
       - name: Build package
         run: |
           python -m build
-         
+
 
       - name: Publish to PyPI
         uses: remorses/pypi@v3
         with:
           username: dannybombastic
           password: ${{ secrets.PYPI_API_TOKEN }}
-
-
-
-
-                                
