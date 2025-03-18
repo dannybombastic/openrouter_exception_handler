@@ -53,11 +53,11 @@ def exception_handler(func):
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except Exception:
+        except Exception as e:
             exception_trace = traceback.format_exc()
-            print(f"❌ Excepción capturada:")
+            print(f"❌ Excepción capturada: {e.__class__.__name__}")
             ai_response = send_exception_to_openrouter(exception_trace)
             if ai_response:
                 print(f"\n🤖 [Respuesta de OpenRouter.ai]:\n{ai_response}\n")
-            
+
     return wrapper
