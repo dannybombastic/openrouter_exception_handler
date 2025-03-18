@@ -40,5 +40,6 @@ jobs:
       - name: Publish to PyPI
         uses: remorses/pypi@v3
         with:
+          setup_file: pyproject.toml
           username: dannybombastic
           password: ${{ secrets.PYPI_API_TOKEN }}
