@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="openrouter_exception_handler",
-    version="0.4.8",
+    version="0.4.9",
     description="Handler for exceptions in Python with OpenRouter.ai",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
