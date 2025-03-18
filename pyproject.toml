@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openrouter_exception_handler"
-version = "0.2.5"
+version = "0.3.4"
 description = "Handler for exceptions in Python with OpenRouter.ai"
 authors = [{ name = "Dannybombastic", email = "dannybombastic@example.com" }]
 license = { text = "MIT" }
@@ -19,5 +19,5 @@ Homepage = "https://github.com/dannybombastic/openrouter_exception_handler"
 Repository = "https://github.com/dannybombastic/openrouter_exception_handler"
 
 [tool.setuptools.packages.find]
-where = ["openrouter_exception_handler/"]
+where = ["src"]  # ✅ Cambiado para que encuentre correctamente el paquete
 include = ["openrouter_exception_handler.exception_handler"]
