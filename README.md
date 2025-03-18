@@ -100,6 +100,7 @@ Define your OpenRouter.ai API key in the environment variable `APIKEY_OPENROUTER
 
 ```bash
 export APIKEY_OPENROUTER="your_api_key_here"
+export LLMODEL="your_llm_here" # Optional, default is 'openai/gpt-3.5-turbo'
 ```
 
 ## 📦 Installation

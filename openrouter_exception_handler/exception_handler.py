@@ -12,7 +12,8 @@ def send_exception_to_openrouter(prompt):
     Devuelve el mensaje de la IA o un mensaje de error si la solicitud falla.
     """
     api_key = os.getenv('APIKEY_OPENROUTER')
-    if not api_key:
+    llmodel = os.getenv('LLMODEL', 'openai/gpt-3.5-turbo')
+    if not api_key or not llmodel:
         print("⚠️ [OpenRouter] APIKEY_OPENROUTER no definida en las variables de entorno.")
         return "No API key provided. Unable to retrieve AI response."
 
@@ -22,7 +23,7 @@ def send_exception_to_openrouter(prompt):
     }
 
     data = {
-        "model": "openai/gpt-3.5-turbo",
+        "model": f"{llmodel}",
         "messages": [
             {"role": "system", "content": "Eres un asistente que ayuda a resolver excepciones Python."},
             {"role": "user", "content": prompt}
